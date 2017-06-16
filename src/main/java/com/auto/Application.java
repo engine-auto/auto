@@ -2,6 +2,7 @@ package com.auto;
 
 import java.util.concurrent.CountDownLatch;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -22,8 +23,9 @@ import com.alibaba.druid.support.http.WebStatFilter;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-@ImportResource("classpath:providers.xml")
+//@ImportResource("classpath:providers.xml")
 @ServletComponentScan
+@MapperScan("com.auto.mapper")
 public class Application implements EmbeddedServletContainerCustomizer {
 
 	@RequestMapping("/hello")

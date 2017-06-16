@@ -1,16 +1,21 @@
 package com.auto.service;
 
+import com.auto.entity.User;
+import org.apache.ibatis.annotations.*;
+
 import java.util.List;
 
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
-
-import com.auto.entity.Tuser;
-
 public interface UserService {
-    List<Tuser> getList();
-    
-	Tuser findByName(String nickname);
-	
-	void addUser(Tuser user);
+
+	List<User> getAll();
+
+	User getOne(Long id);
+
+	User findByusername(String username);
+
+	void insert(User user);
+
+	void update(User user);
+
+	void delete(Long id);
 }

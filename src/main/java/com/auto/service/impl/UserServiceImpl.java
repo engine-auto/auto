@@ -4,12 +4,12 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import com.auto.entity.User;
+import com.auto.mapper.UserMapper;
+import org.apache.ibatis.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.auto.dao.TUserDao;
-import com.auto.entity.Tuser;
 import com.auto.service.UserService;
 
 @Service
@@ -17,22 +17,30 @@ import com.auto.service.UserService;
 public class UserServiceImpl implements UserService{
 
 	@Autowired
-	private TUserDao userdao;
-	
+	private UserMapper userMapper;
 	@Override
-	public Tuser findByName(String nickname) {
-		return userdao.findByNickname(nickname);
+	public List<User> getAll(){
+		return userMapper.getAll();
 	}
-
 	@Override
-	public void addUser(Tuser user) {
-		userdao.save(user);
+	public User getOne(Long id){
+		return userMapper.getOne(id);
 	}
-
 	@Override
-	public List<Tuser> getList() {
-		return userdao.getList();
+	public User findByusername(String username){
+		return userMapper.findByusername(username);
 	}
-
+	@Override
+	public void insert(User user){
+		userMapper.insert(user);
+	}
+	@Override
+	public void update(User user){
+		userMapper.update(user);
+	}
+	@Override
+	public void delete(Long id){
+		userMapper.delete(id);
+	}
 
 }

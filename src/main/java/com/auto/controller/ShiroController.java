@@ -3,6 +3,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import com.auto.service.UserService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
@@ -22,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.auto.dao.IUserDao;
 import com.auto.entity.User;
 
 @Controller
@@ -31,7 +31,7 @@ public class ShiroController {
     private static final Logger logger = LoggerFactory.getLogger(ShiroController.class);
 
     @Autowired
-    private IUserDao userDao;
+    private UserService userService;
 
     @RequestMapping(value="/login",method=RequestMethod.GET)
     public String loginForm(Model model) throws Exception {
@@ -100,7 +100,7 @@ public class ShiroController {
 
     @RequestMapping("/user")
     public String getUserList(Map<String, Object> model){
-        model.put("userList", userDao.getList());
+        model.put("userList", userService.getAll());
         return "user";
     }
 
